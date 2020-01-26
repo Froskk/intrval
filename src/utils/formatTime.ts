@@ -7,9 +7,15 @@ export const formatTime = (ms: number) => {
   const ss = seconds.toString().padStart(2, '0');
   const mm = mins.toString().padStart(2, '0');
 
-  const full = `${mm}m${ss}s${millis}`;
-  // const leadingZeroes = joined.match(/^[0:ms]+/i);
-  // const activeChars = joined.slice(leadingZeroes[0].length);
+  const long: string = `${mm}m${ss}s${millis}`;
+  // const leadingZeroes = long.match(/^[0:ms]+/i);
+  // const activeChars = long.slice(leadingZeroes[0].length);
+  const inactiveValues = long.match(/^[0ms]+/);
+  const activeFrom = inactiveValues ? inactiveValues[0].length : 0;
 
-  return [full, seconds];
+  const format = {
+    long,
+    activeFrom,
+  };
+  return format;
 };
