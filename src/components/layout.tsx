@@ -25,7 +25,7 @@ interface ILayout {
 }
 
 const Layout = ({ children }: ILayout) => (
-  <Wrapper>
+  <Wrapper data-testid="wrapper">
     <ContentWrapper>{children}</ContentWrapper>
     <Nav />
   </Wrapper>
