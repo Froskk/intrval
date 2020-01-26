@@ -6,7 +6,6 @@ const Wrapper = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
   min-height: 100vh;
 `;
 
@@ -27,8 +26,8 @@ interface ILayout {
 
 const Layout = ({ children }: ILayout) => (
   <Wrapper>
-    <ContentWrapper>Content here</ContentWrapper>
-    <Nav>Nav here</Nav>
+    <ContentWrapper>{children}</ContentWrapper>
+    <Nav />
   </Wrapper>
 );
 
