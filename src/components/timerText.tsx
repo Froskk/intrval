@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { useInterval } from 'hooks/useInterval';
 import { formatTime } from 'utils/formatTime';
@@ -34,18 +34,7 @@ const TimeSep = styled.sup<ITimeCharProps>`
   ${p => (p.active ? gradientTextBlPuMixin : 'color: hsla(209, 95%, 19%, 0.3)')}
 `;
 
-const TimerText = () => {
-  const [time, setTime] = useState({ on: false, started: 0, elapsed: 0, accrued: 0 });
-  const startTimer = () =>
-    setTime({
-      ...time,
-      on: true,
-      started: time.started ? time.started : Date.now(),
-      elapsed: Math.max(time.elapsed, time.accrued),
-    });
-  const pauseTimer = () => setTime({ ...time, on: false, started: 0, accrued: time.elapsed });
-  const resetTimer = () => setTime({ on: false, started: 0, elapsed: 0, accrued: 0 });
-
+const TimerText = ({ time, setTime }) => {
   useInterval(
     () => {
       setTime({ ...time, elapsed: Date.now() - time.started + time.accrued });
@@ -79,10 +68,6 @@ const TimerText = () => {
         })}
       </Value>
       <div>{formatTime(time.elapsed)[0]}</div>
-      <button onClick={time.on ? () => pauseTimer() : () => startTimer()}>
-        {time.on ? 'pause' : 'start'}
-      </button>
-      <button onClick={() => resetTimer()}>reset</button>
     </>
   );
 };

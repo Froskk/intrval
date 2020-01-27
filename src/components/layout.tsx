@@ -11,6 +11,7 @@ const Wrapper = styled.main`
 
 const ContentWrapper = styled.section`
   margin: ${p => p.theme.sizing.large};
+  display: flex;
   flex-grow: 1;
 
   font-size: ${p => p.theme.sizing.large};
